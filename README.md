@@ -1,27 +1,23 @@
 # Learning Game Development with Pygame
 
 Table of Contents
-1. Setting up the environment
-2. Creating the display window
-3. Creating a game loop and event handling
-4. Drawing on the window
-5. Creating movement of characters
-6. Spawning enemies
-7. Collision
-8. Bonus items! - Adding sound, text (health & score) and bullets
+1. Initialise Pygame
+2. Setting up the environment
+3. Creating the display window
+4. Creating a game loop and event handling
+5. Drawing on the window
+6. Creating movement of characters
+7. Spawning enemies
+8. Collision
+9. Bonus items! - Adding sound, text (health & score) and bullets
 
 # Pygame setup
-Learning Goal: Understand the basic setup of the game window and initialisation of Pygame
+Learning Goal: Importing library and initialisation of Pygame
 
-```
+```python
 import pygame
 
-
-def main():
-	pass
-	# Initialize window, etc.
-
-
-if __name__ == "__main__":
-	main()
+pygame.init()
 ```
+# Pygame setup
+
