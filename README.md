@@ -15,8 +15,10 @@ Goal: Import library and initialise Pygame
 
 What you'll learn:
 1. import pygame: We need to import Pygame because it brings all the tools and functions we need to create our game. Without importing Pygame, your programme won't have access too the things that make games work!
-2. pygame.init(): Initialises all the Pygame modules. Think of it like flipping a switch to turn on all the different parts of the game. This function turns on all the parts of Pygame so you can start creating your game. 
+2. pygame.init(): Initialises all the Pygame modules. Think of it like flipping a switch to turn on all the different parts of the game. This function turns on all the parts of Pygame so you can start creating your game.
 
+**Step 1: Type the following code below
+**
 ```python
 import pygame
 
@@ -24,10 +26,21 @@ pygame.init()
 ```
 # Creating the display window
 Goal: 
-1. Define the dimensions of the game window
+1. Define the size of the game window
 2. Create a display window where your game will be rendered
 
 What you'll learn: 
+1. Setting the size: We use the measurement of width and height. This window is where all the game action will happen!
+   (Ask them: why do you think it is important to set the size of the display window?)
+   (include a picture of width and height)
+2. pygame.display.set_mode(): Makes the programme create a window of your preferred size.
+
+Let's try it out with the following measurements and see how your screen changes in size!
+
+Step 1
+
+```python
+
 
 
 
