@@ -39,11 +39,11 @@ What you'll learn:
 
 Let's try it out with the following measurements and see how your screen changes in size!
 
-Step 1: Define the game constants. These are fixed values used throughout your game, meaning they don't change while the game is running. 
+   Step 1: Define the game constants. These are fixed values used throughout your game, meaning they don't change while the game is running. 
 
-Step 2: Use a function to create the display window. Which should we use?
+   Step 2: Use a function to create the display window. Which should we use?
 
-Step 3: Use a function to create the text on top of the window. Which should we use?
+   Step 3: Use a function to create the text on top of the window. Which should we use?
 
 Your code should look something like this:
 
