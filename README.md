@@ -13,6 +13,7 @@ Table of Contents
 # Pygame setup
 Learning Goal: Understand the basic setup of the game window and initialisation of Pygame
 
+```
 import pygame
 
 
@@ -23,3 +24,4 @@ def main():
 
 if __name__ == "__main__":
 	main()
+```
