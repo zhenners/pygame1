@@ -1,16 +1,25 @@
 # Learning Game Development with Pygame
 
 Table of Contents
-1. Setting up the environment with Pygame
-2. Creating the display window
-3. Creating a game loop and event handling
-4. Drawing on the window
-5. Creating movement of characters
-6. Spawning enemies
-7. Collision
-8. Bonus items! - Adding sound, text (health & score) and bullets
+1. Learning how to use VSCode
+2. Setting up the environment with Pygame
+3. Creating the display window
+4. Creating a game loop and event handling
+5. Drawing on the window
+6. Creating movement of characters
+7. Spawning enemies
+8. Collision
+9. Bonus items! - Adding sound, text (health & score) and bullets
 
-# Setting up the environment with Pygame
+# 1. How to use VSCode
+
+Here are some things you need to know to use VSCode!
+
+1. Running your code: Just like the 'green flag' button on Scratch, we type this commmand ``` python3 main.py ``` in the ```terminal```. Or you can press the ``` up ``` button on the keyboard to avoid always typing the command.
+2. Debugging: Sometimes your code will not run and we don't know why! Not to worry, the ```terminal``` lets you know where the error is in your code. 
+
+
+# 2. Setting up the environment with Pygame
 Goal: Import library and initialise Pygame
 
 What you'll learn:
@@ -25,10 +34,11 @@ import pygame
 pygame.init()
 ```
 # Creating the display window
-Goal: 
+Goals: 
 1. Define the size of the game window
 2. Create a display window where your game will be rendered
-3. Name the game
+3. Understand frame per second
+4. Name the game
 
 What you'll learn: 
 1. Setting the size: We use the measurement of width and height. This window is where all the game action will happen!
@@ -45,7 +55,8 @@ Let's try it out with the following measurements and see how your screen changes
 
    Step 3: Use a function to create the text on top of the window. Which should we use?
 
-Your code should look something like this:
+Your code should look something like this. Tell us what do you notice?:
+(Ask them what happens after they run the code and explain why we need loops)
 
 ```python
 # Game constants
@@ -57,6 +68,9 @@ window = pygame.display.set_mode((WIDTH, HEIGHT))
 # Create text
 pygame.display.set_caption("PEW PEW PEW GAME")
 ```
+
+# 3. Creating the game loop and event handling
+Goals: Keep the game running and process events
 
 
 
