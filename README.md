@@ -63,7 +63,7 @@ WIDTH = 800
 HEIGHT = 400
 
 # Create display window
-window = pygame.display.set_mode((WIDTH, HEIGHT))
+WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 # Create text
 pygame.display.set_caption("PEW PEW PEW GAME")
 ```
@@ -128,6 +128,78 @@ def main():
 main()
 ```
 # 4. Drawing on the window
+
+Goal:
+1. Load the images of the game characters and display on the screen
+2. Understand coordinates 
+
+
+What you'll learn:
+1. ```pygame.image.load():```to load images of the player's spaceship and enemy from your file directory
+2. ```WIN.blit():``` to draw one image onto another surface.
+3. ```pygame.display.update()``` to update the contents of the entire display screen.
+
+LOADING THE IMAGES 
+Step 1: Assign a variable to the function and specify the file path. 
+
+```python
+background = pygame.image.load("assets/background.png")
+```
+This means:
+background = our variable
+pygame.image.load = function
+assets = folder name (file path)
+background.png = name of the image
+
+Step 2: Your turn to load the player and enemy image!
+
+MAKING THE IMAGE APPEAR ON SCREEN
+Step 1: Create a draw function that will compartmentalise all our images and display
+
+```python
+def draw():
+
+def main():
+   clock = pygame.time.Clock()
+   running = True
+   while running:
+```
+Step 2: In the def draw(): function, blit the image 
+
+```python
+def draw():
+   WINDOW. blit(background, (0,0))
+```
+Let's break this down:
+WINDOW = our variable that represents the window surface
+background = our image loaded from the file
+(0,0) = our x and y coordinates. This means that you want to draw the 'background' image starting from the top-left corner of the window.
+
+Step 3: Let's update the contents using ```pygame.display.update()```. This will be called inside our ```main``` game loop. 
+
+```python
+def main():
+   clock = pygame.time.Clock()
+   running = True
+   while running:
+      clock.tick(FPS)
+      for event in pygame.event.get():
+         if event.type == pygame.QUIT:
+            runnning = False
+
+      pygame.display.update()
+
+main()
+```
+Step 4: The ```draw``` function will not work if we do not call it!
+
+```python
+   pygame.display.update()
+   draw()
+
+main()
+```
+
 
 
 
