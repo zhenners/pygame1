@@ -5,7 +5,7 @@ Table of Contents
 2. Setting up the environment with Pygame
 3. Creating the display window
 4. Creating a game loop and event handling
-5. Drawing on the window
+5. Drawing on the window (The Background and The Player)
 6. Creating movement of characters
 7. Spawning enemies
 8. Collision
@@ -127,7 +127,7 @@ def main():
 
 main()
 ```
-# 4. Drawing on the window
+# 4. Drawing on the window - The Space Background 
 
 Goal:
 1. Load the images of the game characters and display on the screen
@@ -143,10 +143,10 @@ LOADING THE IMAGES
 Step 1: Assign a variable to the function and specify the file path. 
 
 ```python
-background = pygame.image.load("assets/background.png")
+background_image = pygame.image.load("assets/background.png")
 ```
 This means:
-background = our variable
+background_image = our variable
 pygame.image.load = function
 assets = folder name (file path)
 background.png = name of the image
@@ -168,11 +168,11 @@ Step 2: In the def draw(): function, blit the image
 
 ```python
 def draw():
-   WINDOW. blit(background, (0,0))
+   WINDOW. blit(background_image, (0,0))
 ```
 Let's break this down:
 WINDOW = our variable that represents the window surface
-background = our image loaded from the file
+background_image = our image loaded from the file
 (0,0) = our x and y coordinates. This means that you want to draw the 'background' image starting from the top-left corner of the window.
 
 Step 3: Let's update the contents using ```pygame.display.update()```. This will be called inside our ```main``` game loop. 
@@ -199,6 +199,52 @@ Step 4: The ```draw``` function will not work if we do not call it!
 
 main()
 ```
+# 5 Drawing the window - The Player 
+Goals:
+1. Create an invisible rectangle around the player image
+2. Draw the player image on to the display screen
+
+What you'll learn:
+1. Using a rectangle to surround our player helps with the position, movement and collision in the game.
+2. ```.get_rect():```: to create a rectangle that matches with size of the image.
+3. ```.left``` and ```.centery```: to move the rectangle.
+
+Step 1: Create the invisible rectangle based on the size of the player_image. Run your programme.
+
+```python
+player_image = pygame.image.load ("assets/player.png")
+player_rect = player_image.get_rect()
+```
+
+Notice that the player is on the top left corner. Let's position it differently. 
+
+Step 2: Move the player to the left by 100 pixels from its current position
+
+```python
+player_image = pygame.image.load ("assets/player.png")
+player_rect = player_image.get_rect()
+player_rect.left = 100
+```
+Yay! The rocket has moved to the left. Let's position it to the middle.
+
+Step 2: Move the player to the middle from its current position
+
+```python
+player_image = pygame.image.load ("assets/player.png")
+player_rect = player_image.get_rect()
+player_rect.left = 100
+player_rect.centery = HEIGHT//2
+```
+For a sure shot to place the player in the middle, we took the ```HEIGHT``` and divided it by 2. 
+
+
+
+
+
+
+
+
+
 
 
 
