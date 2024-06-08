@@ -6,10 +6,11 @@ Table of Contents
 3. Creating the display window
 4. Creating a game loop and event handling
 5. Drawing on the window (The Background and The Player)
-6. Creating movement of characters
-7. Spawning enemies
-8. Collision
-9. Bonus items! - Adding sound, text (health & score) and bullets
+6. Setting the position of enemies
+7. Creating movement of characters
+8. Spawning enemies
+9. Collision
+10. Bonus items! - Adding sound, text (health & score) and bullets
 
 # 1. How to use VSCode
 
@@ -208,6 +209,7 @@ What you'll learn:
 1. Using a rectangle to surround our player helps with the position, movement and collision in the game.
 2. ```.get_rect():```: to create a rectangle that matches with size of the image.
 3. ```.left``` and ```.centery```: to move the rectangle.
+4. ```.centery```: represents the y-coordinate of its center. 
 
 Step 1: Create the invisible rectangle based on the size of the player_image. Run your programme.
 
@@ -236,6 +238,37 @@ player_rect.left = 100
 player_rect.centery = HEIGHT//2
 ```
 For a sure shot to place the player in the middle, we took the ```HEIGHT``` and divided it by 2. 
+
+
+
+
+
+# Setting the position of the enemies
+Goal:
+1. Create an invisible rectangle to around our enemy image
+2. Draw the enemy image onto the display screen.
+3. Understand factors like the number of enemies, spacing between the enemies and enemy behavior in gameplay.
+4. Utilise ```random```to generate random positions of the enemies for variability and unpredictability in the game.
+
+What you'll learn: 
+
+Step 1: Create the invisible rectangle based on the size of the enemy_image. Then, blit it out onto the screen. 
+Try it out on your own! 
+
+Your enemy has appeared! It should be at the top left position of the screen. 
+
+Step 2: Set the enemies' postions by setting up the parameters of our game constants.
+
+```python
+WIDTH = 800
+HEIGHT = 400
+FPS = 30
+NUM_ENEMIES = 5
+BUFFER_DISTANCE = 500
+```
+NUM_ENEMIES = The number of enemies you want to create.
+BUFFER_DISTANCE = The distance by pixels between each enemy. 
+
 
 
 
