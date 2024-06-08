@@ -37,8 +37,7 @@ pygame.init()
 Goals: 
 1. Define the size of the game window
 2. Create a display window where your game will be rendered
-3. Understand frame per second
-4. Name the game
+3. Name the game
 
 What you'll learn: 
 1. Setting the size: We use the measurement of width and height. This window is where all the game action will happen!
@@ -56,7 +55,7 @@ Let's try it out with the following measurements and see how your screen changes
    Step 3: Use a function to create the text on top of the window. Which should we use?
 
 Your code should look something like this. Tell us what do you notice?:
-(Ask them what happens after they run the code and explain why we need loops)
+[Ask them what happens after they run the code and explain why we need loops]
 
 ```python
 # Game constants
@@ -70,7 +69,67 @@ pygame.display.set_caption("PEW PEW PEW GAME")
 ```
 
 # 3. Creating the game loop and event handling
-Goals: Keep the game running and process events
+Goals:
+1. Keep the game running
+2. Processing user inputs and system events to control the game aka event handling
+3. Manage the game's frame rate per second
+
+What you'll learn: 
+1. Creating a main game loop function using ```def main():```. This serves as the core of the game. It initialises the game, contains the main game loop, updates the game state and renders the graphics.
+2. pygame.event.get(): retrieves the list of events
+3. pygame.QUIT: quitting the game
+
+1. Frame rate per second (FPS): refers to the number of frames (images) that are displayed on the screen every second in a video or game. It is a measure of how smooth the animation appears to the user.
+[ask them why is it important that we have fps]
+2. pygame.time.Clock(): creates a Clock that helps control the frame rate
+3. clock.tick(FPS): makes sure that the game runs at the specified frame rates per second.
+
+Step 1: Let's create our first function called main():.
+
+```python
+def main():
+   running = True
+   while running:
+      for event in pygame.event.get():
+         if event.type == pygame.QUIT:
+            running = False
+```
+Step 2: Let's set the desired FPS in our game constants
+
+```python
+WIDTH = 800
+HEIGHT = 400
+FPS = 30
+```
+Step 3: Use a function to manage the frame rate per second in the game
+
+```python
+def main():
+   clock = pygame.time.Clock()
+   running = True
+   while running:
+      clock.tick(FPS)
+      for event in pygame.event.get():
+         if event.type == pygame.QUIT:
+            runnning = False
+```
+Step 4: Don't forget to let the computer to know to run the function!
+
+```python
+def main():
+   clock = pygame.time.Clock()
+   running = True
+   while running:
+      clock.tick(FPS)
+      for event in pygame.event.get():
+         if event.type == pygame.QUIT:
+            runnning = False
+
+main()
+```
+# 4. Drawing on the window
+
+
 
 
 
