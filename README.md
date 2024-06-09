@@ -247,7 +247,7 @@ For a sure shot to place the player in the middle, we took the ```HEIGHT``` and 
 
 
 
-# Setting the position of the enemies
+# 6 Setting the position of the enemies
 Goal:
 1. Create an invisible rectangle to around our enemy image
 2. Draw the enemy image onto the display screen.
@@ -255,6 +255,7 @@ Goal:
 4. Utilise the ```random``` module to generate random positions of the enemies for variability and unpredictability in the game.
 
 What you'll learn: 
+1. Understanding the 
 
 Step 1: Create the invisible rectangle based on the size of the enemy_image. Then, blit it out onto the screen with the coordinates (0,0)
 Try it out on your own! 
@@ -288,10 +289,10 @@ NUM_ENEMIES = 5
 BUFFER_DISTANCE = 500
 ```
 NUM_ENEMIES = The number of enemies you want to create *each loop?
-BUFFER_DISTANCE = To control where the enemies start appearing. We want some distance for the enemies before they appear into the screen, so that it looks realistic! This means we're setting an extra 500 of unseen space to our window width of 400 (400 + 500).
+BUFFER_DISTANCE = To control where the enemies start appearing. We want some pixel distance for the enemies before they appear into the screen, so that it looks realistic! This means we're setting an extra 500 of unseen space to our window width of 400 (400 + 500).
 * draw a box of the extended 500
 
-Step 4: We will create a ```list``` to hold all the enemies together.  [Ask why do we need a list to hold them?]
+Step 4: We will create a `list` to hold all the enemies together.  [Ask why do we need a list to hold them?]
 
 ```python
 # Our game constants
@@ -302,12 +303,129 @@ NUM_ENEMIES = 5
 BUFFER_DISTANCE = 500
 ENEMIES = []
 ```
-Step 5: Let's create a loop for each enemy to appear by using ```random.randint``` function
+Step 5: Let's create a loop for each enemy to appear by using a `for loop`
 
 ```python
 for _ in range(NUM_ENEMIES):
-enemy_rect.left = random.randint(WIDTH, WIDTH + BUFFER_DISTANCE)
 ```
+Step 6: Under this loop, we are going to randomly set the positions of the enemies to be outside the screen using ```BUFFER_DISTANCE``` and the ```random.randint``` function.      
+
+```python
+for _ in range(NUM_ENEMIES):
+   enemy_rect.left = random.randint(WIDTH, WIDTH + BUFFER_DISTANCE)
+```
+Using ```enemy_rect.left``` means we are setting the left side of the enemy rectangle to a random position between the right edge of the game window (which is WIDTH = 800) and a BUFFER_DISTANCE of 500 more beyond the WIDTH (800 + 500).
+The ```random.randint``` function helps us randomise the positions. 
+
+Step 7: So we have set the enemies' position from left to right (horizontally). Let's set the up and down position (vertically) for the enemies using ```.centery```
+
+```python
+for in _ range(NUM_ENEMIES):
+   enemy_rect.left = random.randint(WIDTH, WIDTH + BUFFER_DISTANCE)
+   enemy_rect.centery = random.randint(0, HEIGHT - 48)
+```
+Using ```enemy_rect.centery``` means we are setting the vertical center of the enemy rectangle at the top of the window (0) and 48 pixels less than the window HEIGHT (800 - 48). This ensures that the enemies are positioned randomly up and down within the visible height of the game window. 
+
+Step 8: Now that we have created all the new random positions of these enemies. It is time to store them in a list called ```ENEMIES``` using ```.append```
+
+```python
+for _ in range(NUM_ENEMIES):
+    enemy_rect.left = random.randint(WIDTH, WIDTH + BUFFER_DISTANCE)
+    enemy_rect.centery = random.randint(0, HEIGHT - 48)
+    ENEMIES.append(enemy_rect)
+``` 
+Step 9: All the hard work is done! Let's make sure it appears on the screen by using the ```.blit``` function. Where should we place this function?
+
+Remove the (0,0) coordinates as we have set new values in enemy_rect. Once done, run your code! Tell us what do you notice?  
+
+```python
+WINDOW.blit(enemy_image, enemy_rect)
+```
+# 7 Moving the enemies
+Goal:
+Move the enemies based on the random positions we have set earlier. 
+Understand the use of velocity.
+Use ```for loop``` and ```if else``` statements to move the enemies.
+
+What you'll learn: 
+
+
+Step 1: To make the enemies move, we will use velocity in our game constants. Velocity is the speed at which the enemies move horizontally. 
+
+```python
+# Game constants
+NUM_ENEMIES = 5
+BUFFER_DISTANCE = 500
+ENEMIES = []
+ENEMY_VELOCITY = 10
+```
+The higher the value of velocity, the faster the enemy moves. 
+
+Step 2: Create a function to store all the enemies' movement only. 
+
+```python
+for _ in range(NUM_ENEMIES):
+    enemy_rect.left = random.randint(WIDTH, WIDTH + BUFFER_DISTANCE)
+    enemy_rect.centery = random.randint(0, HEIGHT - 48)
+    ENEMIES.append(enemy_rect)
+
+# This is where all your enemies move!
+def enemy_move():
+```
+
+Step 2: In the ```enemy_move():``` function, use a ```for loop``` to recall every enemy that we have created in the ```ENEMIES``` list. 
+
+```python
+def enemy_move():
+   for enemy_rect in ENEMIES:
+```
+Step 3: To ensure that the enemies continuously moves horizontally in and out of screen. And also, returning back into the screen once it's out. First, we need to check, if the enemy's rectangle has moved out of the left side of the screen. 
+
+```python
+def enemy_move():
+   for enemy_rect in ENEMIES:
+   if enemy_rect.right < 0:
+```
+This means if the enemy's right edge of the rectangle is less than 0, it means that the enemy has moved out of the visible area. 0 is the starting point in the left side of screen. 
+
+Step 4: Now that we have told the computer that if the enemies are out of the screen, we need to continue the loop to ensure that the enemies will return back to the screen again. 
+
+```python
+def enemy_move():
+   for enemy_rect in ENEMIES:
+      if enemy_rect.right < 0:
+         enemy_rect.left = random.randint(WIDTH, WIDTH + BUFFER_DISTANCE)
+         enemy_rect.centery = random.randint(0, HEIGHT - 48)
+```
+This moves the enemy back to a random position at the right side of the screen, ready to re-enter the visible part of the screen. This also helps ensures that the game will continuously run when the player has not lose. 
+
+Step 5: Great! Now it is time to make the enemies move using ```ENEMIES_VELOCITY``` and ```else```statement based on the conditions that we have set. 
+
+```python
+def enemy_move():
+   for enemy_rect in ENEMIES:
+      if enemy_rect.right < 0:
+         enemy_rect.left = random.randint(WIDTH, WIDTH + BUFFER_DISTANCE)
+         enemy_rect.centery = random.randint(0, HEIGHT - 48)
+      else:
+         enemy_rect.x -= ENEMY_VELOCITY
+```
+We use ```rect.x``` because we want the enemies to move from right to left, horizontally (x-axis). ```-= ENEMY_VELOCITY``` moves the enemies by 10 pixels each time. We are using minus to decrease the x-axis coordinates, so that it moves to left. 
+
+# 8 Using keys to move the player 
+Goals
+Move the player accordingly to the keys assigned and when only keys are pressed. 
+
+What you'll learn: 
+1. ```pygame.key.get_pressed()``` function to move the player when keys are pressed.
+
+Step 1: Just like how we created a function for ```enemy_move():```. Define a function for ```player_move():``` and write it below where we created the rectangle for the player. 
+
+Step 2:
+
+
+
+
 
 
 
