@@ -7,9 +7,8 @@ Table of Contents
 4. Creating a game loop and event handling
 5. Drawing on the window (The Background and The Player)
 6. Setting the position of enemies
-7. Creating movement of characters
-8. Spawning enemies
-9. Collision
+7. Creating movement of the enemy and the player
+9. Collision of player and enemy
 10. Bonus items! - Adding sound, text (health & score) and bullets
 
 # 1. How to use VSCode
@@ -454,8 +453,33 @@ Run your code! This means that if the UP arrow key is pressed, and if the player
 
 Step 4: Your turn! Using ```if``` statement, make the player move downwards when the DOWN arrow key is pressed. Make sure that the player does not go outside the screen! 
 
-#
+# 7 Collision detection between player and enemy
+Goal:
+1. When the enemy rectangle collides with the player rectangle, the game will end.
 
+What you'll learn:
+1. Use ```if``` statements to set a condition if the enemy collides with the player, the game will end.
+2. ```.colliderect():```:  to check for collisions between two rectangles.
+
+Step 1: Create a new function for ```collision``` below the ```enemy_move``` function 
+
+Step 2: Write an ```if``` statement and ```.colliderect():``` to check for collision between player and enemy
+
+```python
+def collision():
+   if player_rect.colliderect(enemy_rect):
+   quit()
+```
+Do you think you can explain what this line of code means? It's time to run your code!
+
+#8 BONUS ITEMS!
+
+Good job! You have made it this far. 
+
+We believe that there are many other features that can make the game better! 
+
+1. Adding music to the game
+2. Adding text in the game - scores and health
 
 
 
