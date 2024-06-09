@@ -24,8 +24,8 @@ Here are some things you need to know to use VSCode!
 Goal: Import library and initialise Pygame
 
 What you'll learn:
-1. import pygame: We need to import Pygame because it brings all the tools and functions we need to create our game. Without importing Pygame, your programme won't have access too the things that make games work!
-2. pygame.init(): Initialises all the Pygame modules. Think of it like flipping a switch to turn on all the different parts of the game. This function turns on all the parts of Pygame so you can start creating your game.
+1. import ```pygame```: We need to import Pygame because it brings all the tools and functions we need to create our game. Without importing Pygame, your programme won't have access too the things that make games work!
+2. ```pygame.init()```: Initialises all the Pygame modules. Think of it like flipping a switch to turn on all the different parts of the game. This function turns on all the parts of Pygame so you can start creating your game.
 
 **Step 1: Type the following code below
 **
@@ -44,8 +44,8 @@ What you'll learn:
 1. Setting the size: We use the measurement of width and height. This window is where all the game action will happen!
    (Ask them: why do you think it is important to set the size of the display window?)
    (include a picture of width and height)
-2. pygame.display.set_mode(): Makes the programme create a window of your preferred size.
-3. pygame.display.set_caption(): Sets the text that appears on the top of the window. 
+2. ```pygame.display.set_mode()```: Makes the programme create a window of your preferred size.
+3. ```pygame.display.set_caption()```: Sets the text that appears on the top of the window. 
 
 Let's try it out with the following measurements and see how your screen changes in size!
 
@@ -72,22 +72,23 @@ pygame.display.set_caption("PEW PEW PEW GAME")
 # 3. Creating the game loop and event handling
 Goals:
 1. Keep the game running
-2. Processing user inputs and system events to control the game aka event handling
+2. Process user inputs and system events to control the game aka event handling
 3. Manage the game's frame rate per second
 
 What you'll learn: 
 1. Creating a main game loop function using ```def main():```. This serves as the core of the game. It initialises the game, contains the main game loop, updates the game state and renders the graphics.
-2. pygame.event.get(): retrieves the list of events
-3. pygame.QUIT: quitting the game
+2. ```pygame.event.get()```: retrieves the list of events
+3. ```pygame.QUIT:```: quitting the game
 
 1. Frame rate per second (FPS): refers to the number of frames (images) that are displayed on the screen every second in a video or game. It is a measure of how smooth the animation appears to the user.
 [ask them why is it important that we have fps]
-2. pygame.time.Clock(): creates a Clock that helps control the frame rate
-3. clock.tick(FPS): makes sure that the game runs at the specified frame rates per second.
+2. ```pygame.time.Clock()```: creates a Clock that helps control the frame rate
+3. ```clock.tick(FPS)```: makes sure that the game runs at the specified frame rates per second.
 
 Step 1: Let's create our first function called main():.
 
 ```python
+# The main game loop
 def main():
    running = True
    while running:
@@ -98,6 +99,7 @@ def main():
 Step 2: Let's set the desired FPS in our game constants
 
 ```python
+# Game constants
 WIDTH = 800
 HEIGHT = 400
 FPS = 30
@@ -155,17 +157,19 @@ background.png = name of the image
 Step 2: Your turn to load the player and enemy image!
 
 MAKING THE IMAGE APPEAR ON SCREEN
-Step 1: Create a draw function that will compartmentalise all our images and display
+Step 1: Create a ```draw``` function that will compartmentalise all our images and display. It should be above the ```main``` function
 
 ```python
+# This where all your images/characters will come alive!
 def draw():
 
+# The main game loop
 def main():
    clock = pygame.time.Clock()
    running = True
    while running:
 ```
-Step 2: In the def draw(): function, blit the image 
+Step 2: In the ```def draw():``` function, blit the image 
 
 ```python
 def draw():
@@ -248,26 +252,65 @@ Goal:
 1. Create an invisible rectangle to around our enemy image
 2. Draw the enemy image onto the display screen.
 3. Understand factors like the number of enemies, spacing between the enemies and enemy behavior in gameplay.
-4. Utilise ```random```to generate random positions of the enemies for variability and unpredictability in the game.
+4. Utilise the ```random``` module to generate random positions of the enemies for variability and unpredictability in the game.
 
 What you'll learn: 
 
-Step 1: Create the invisible rectangle based on the size of the enemy_image. Then, blit it out onto the screen. 
+Step 1: Create the invisible rectangle based on the size of the enemy_image. Then, blit it out onto the screen with the coordinates (0,0)
 Try it out on your own! 
+
+```python
+enemy_image = pygame.image.load ("assets/enemy.png")
+enemy_rect = enemy_image.get_rect()
+
+def draw():
+   WINDOW.blit (player_image, player_rect)
+   WINDOW.blit (enemy_image, (0,0))
+```
 
 Your enemy has appeared! It should be at the top left position of the screen. 
 
-Step 2: Set the enemies' postions by setting up the parameters of our game constants.
+Step 2: To use the ```random``` module, we have to import it. Just like how we ```import pygame```.
 
 ```python
+import pygame
+import random
+```
+
+Step 3: Set the enemies' postions by setting up the parameters of our game constants.
+
+```python
+# Our game constants
 WIDTH = 800
 HEIGHT = 400
 FPS = 30
 NUM_ENEMIES = 5
 BUFFER_DISTANCE = 500
 ```
-NUM_ENEMIES = The number of enemies you want to create.
-BUFFER_DISTANCE = The distance by pixels between each enemy. 
+NUM_ENEMIES = The number of enemies you want to create *each loop?
+BUFFER_DISTANCE = To control where the enemies start appearing. We want some distance for the enemies before they appear into the screen, so that it looks realistic! This means we're setting an extra 500 of unseen space to our window width of 400 (400 + 500).
+* draw a box of the extended 500
+
+Step 4: We will create a ```list``` to hold all the enemies together.  [Ask why do we need a list to hold them?]
+
+```python
+# Our game constants
+WIDTH = 800
+HEIGHT = 400
+FPS = 30
+NUM_ENEMIES = 5
+BUFFER_DISTANCE = 500
+ENEMIES = []
+```
+Step 5: Let's create a loop for each enemy to appear by using ```random.randint``` function
+
+```python
+for _ in range(NUM_ENEMIES):
+enemy_rect.left = random.randint(WIDTH, WIDTH + BUFFER_DISTANCE)
+```
+This sets the left (x-coordinate) 
+
+
 
 
 
