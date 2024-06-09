@@ -414,14 +414,48 @@ We use ```rect.x``` because we want the enemies to move from right to left, hori
 
 # 8 Using keys to move the player 
 Goals
-Move the player accordingly to the keys assigned and when only keys are pressed. 
+Use ```if``` statements to ensure player moves when only assigned keys are pressed. 
+Understand the use of velocity.
+Understand the position of the player in relative to the keys assigned. 
+Player stays within the screen and not move outside of the screen [Ask them why is it important to create a boundary of where the player can move in the screen, game controls]
 
 What you'll learn: 
 1. ```pygame.key.get_pressed()``` function to move the player when keys are pressed.
+2. ```pygame.K_UP``` and ```pygame.K_DOWN``` to assign up and down arrow keys to move the player. 
 
 Step 1: Just like how we created a function for ```enemy_move():```. Define a function for ```player_move():``` and write it below where we created the rectangle for the player. 
 
-Step 2:
+``` python 
+def player_move():
+```
+
+Step 2: For our game constants, set the speed of our player's movement using velocity. 
+
+```python
+PLAYER_VELOCITY = 5
+```
+Step 3: Assign a variable to the function ```pygame.key.get_pressed()``` under the ```player_move():``` function.
+
+```python
+def player_move():
+   key_pressed = pygame.key.get_pressed()
+```
+This examines the state of the keys, whether they are pressed or not. 
+
+Step 4: Using ```if``` statement, make the player move upwards when the UP arrow key is pressed. 
+
+```python
+def player_move():
+   key_pressed = pygame.key.get_pressed()
+   if key_pressed[pygame.K_UP] and player_rect.top > 0:
+      player.rect.top -= PLAYER_VELOCITY
+```
+Run your code! This means that if the UP arrow key is pressed, and if the player's image rectangle top edge is not at the top edge of the screen, the player will be able to move up. This ensures that the player will not disappear off from the screen during the game. 
+
+Step 4: Your turn! Using ```if``` statement, make the player move downwards when the DOWN arrow key is pressed. Make sure that the player does not go outside the screen! 
+
+#
+
 
 
 
