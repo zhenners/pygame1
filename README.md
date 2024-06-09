@@ -308,7 +308,6 @@ Step 5: Let's create a loop for each enemy to appear by using ```random.randint`
 for _ in range(NUM_ENEMIES):
 enemy_rect.left = random.randint(WIDTH, WIDTH + BUFFER_DISTANCE)
 ```
-This sets the left (x-coordinate) 
 
 
 
