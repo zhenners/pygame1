@@ -556,9 +556,9 @@ def main():
 	while running:
 		... # your function calls blah blah blah..
 		if health <= 0: # if health is 0, stop running
-            break
-	ending_screen()
-   pygame.quit()
+			break
+	ending_screen(running)
+	pygame.quit()
 ```
 Step 5: Render the texts using ```.render``` and blit the text onto the window in your ```draw()``` function. You'll need to blit the score text below the health. You can do this by adding the height of the health text to the score text's height
 ```python
@@ -574,9 +574,7 @@ Woohoo! We're almost done :D
 ## Adding ending screen
 Step 1: Create an ```ending_screen()``` function and add your global variable ```running```. Recreate a similar game loop from your ```main()``` function here. Everything else should be added before the loop.
 ```python
-def ending_screen():
-	global running
-
+def ending_screen(running):
 	# Insert ending_screen display code here
 	while running:
 		for event in pygame.event.get():
@@ -603,6 +601,16 @@ Step 3: score is displayed below the ending message
 Step 4: Update the display to show the ending text
 ```python
 	pygame.display.update()
+```
+Step 5: Don't forget to call ```ending_screen()``` in your ```main()```
+```python
+def main():
+	while running:
+		... # your function calls blah blah blah..
+		if health <= 0: # if health is 0, stop running
+			break
+	ending_screen(running)
+	pygame.quit()
 ```
 That's it, You're done! Congratulations (^-^) You can now enjoy your masterpiece and newfound knowledge and even bring it home with you!
 
