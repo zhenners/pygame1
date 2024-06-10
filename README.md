@@ -476,7 +476,7 @@ Run your code! This means that if the UP arrow key is pressed, and if the player
 
 Step 4: Your turn! Using ```if``` statement, make the player move downwards when the DOWN arrow key is pressed. Make sure that the player does not go outside the screen! 
 
-# 7 Collision detection between player and enemy
+# 9 Collision detection between player and enemy
 Goal:
 1. When the enemy rectangle collides with the player rectangle, the game will end.
 
@@ -495,16 +495,116 @@ def collision():
 ```
 Do you think you can explain what this line of code means? It's time to run your code!
 
-#8 BONUS ITEMS!
+# 10 BONUS ITEMS!
+Good job! You have made it this far.
 
-Good job! You have made it this far. 
-
-We believe that there are many other features that can make the game better! 
+We believe that there are many other features that can make the game better!
 
 1. Adding music to the game
-2. Adding text in the game - scores and health
+2. Adding a score and health for the player
+3. Adding ending screen
 
+## Adding music to the game
+Step 1: In order to add music to the game, you'll need to use ```.mixer.Sound``` to load your music
+```python
+background_music = pygame.mixer.Sound("assets/background_music.wav")
+```
+Step 2: Play the background music in your ```main()``` function
+```python
+def main():
+   clock = pygame.time.Clock()
 
+   # play the background music on a loop
+   background_music.play(loops=-1)
+   ...
+
+```
+Run it and check it out for yourself!
+
+## Adding score and health
+Step 1: Initialize font and define initial variables
+```python
+FONT = pygame.font.SysFont('comicsans', 40)
+
+# define initial health and score
+health = 3
+score = 0
+```
+Step 2: Every time the player avoids an enemy, their score increases. Increment the score by 1 for each enemy that passes the player and reaches the end of the screen.
+```python
+def enemy_move():
+   global score
+
+   for enemy_rect in ENEMIES:
+      if enemy_rect.right < 0: # once enemy has passed the left side of the screen
+            enemy_rect.left = random.randint(WIDTH, WIDTH + BUFFER_DISTANCE)
+            enemy_rect.centery = random.randint(0, HEIGHT - 48)
+            score += 1 # increment score
+```
+Step 3: Every time the player is hit by an enemy, their health decreases. Decrement the health when checking collisions between enemy and player. (!)
+```python
+def collision():
+   for enemy_rect in ENEMIES:
+      if player_rect.colliderect(enemy_rect): # once enemy collides with player
+         health -= 1 # decrement score
+         ENEMIES.remove(enemy_rect)
+         break
+```
+Step 4: When the player's health is 0, the game should stop running and display the ending screen. Add an ```if``` statement at the end of your main loop in ```main()``` and call ```ending_screen()``` outside your loop.
+```python
+def main():
+	while running:
+		... # your function calls blah blah blah..
+		if health <= 0: # if health is 0, stop running
+            break
+	ending_screen()
+   pygame.quit()
+```
+Step 5: Render the texts using ```.render``` and blit the text onto the window in your ```draw()``` function. You'll need to blit the score text below the health. You can do this by adding the height of the health text to the score text's height
+```python
+def draw():
+   health_text = FONT.render("Health: " + str(health), 1, WHITE)
+   WIN.blit(health_text, (10, 10))
+   score_text = FONT.render("Score: " + str(score), 1, WHITE)
+   # score text is positioned below the health message
+   WIN.blit(score_text, (10, 10 + health_text.get_height() + 10))
+```
+Woohoo! We're almost done :D
+
+## Adding ending screen
+Step 1: Create an ```ending_screen()``` function and add your global variable ```running```. Recreate a similar game loop from your ```main()``` function here. Everything else should be added before the loop.
+```python
+def ending_screen():
+	global running
+
+	# Insert ending_screen display code here
+	while running:
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				running = False
+				pygame.quit()
+				exit()
+		pygame.time.delay(100)
+```
+Step 2: To display an ending message, render and blit your message to the screen. Use the calculation ```(WIDTH // 2 - ending_text.get_width() // 2, HEIGHT // 2 - ending_text.get_height() // 2)``` to find the centre position of the screen
+```python
+	# display ending message
+    ending_text = FONT.render("YOU DIED!", 1, WHITE)
+    WIN.blit(ending_text, (WIDTH // 2 - ending_text.get_width() // 2, HEIGHT // 2 - ending_text.get_height() // 2))
+```
+Step 3: score is displayed below the ending message
+```python
+	# score is displayed below the ending message
+    score_text = FONT.render("Score: " + str(score), 1, WHITE)
+	# same calculations except add the height of the ending message
+    WIN.blit(score_text, (
+    WIDTH // 2 - score_text.get_width() // 2, HEIGHT // 2 - score_text.get_height() // 2 + ending_text.get_height()))
+```
+Step 4: Update the display to show the ending text
+```python
+	pygame.display.update()
+```
+That's it, You're done! Congratulations (^-^) You can now enjoy your masterpiece and newfound knowledge and even bring it home with you!
 
 
 
